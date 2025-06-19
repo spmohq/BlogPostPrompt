@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <title>BlogPost Prompt Genie | Siva Prasad Mukherjee</title>
+  <link rel="icon" type="image/x-icon" href="spm.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1E1E2F;
+      color: #EAEAEA;
+      padding: 2rem;
+      text-align: center; /* Center inline or inline-block children like h1 */
+      margin: 0;
+    }
+    .profile-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+    .social-buttons-container {
+        margin-bottom: 30px;
+    }
+    .social-btn {
+        text-decoration: none;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 15px;
+        cursor: pointer;
+        border: none;
+        box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .whatsapp-btn {
+        background-color: #25D366;
+    }
+    .whatsapp-btn:hover {
+        background-color: #1EBE5D;
+    }
+    .facebook-btn {
+        background-color: #4267B2;
+    }
+    .facebook-btn:hover {
+        background-color: #365899;
+    }
+    .tool-card {
+      background: #3A3D5B;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      max-width: 500px; /* Limit width on desktop */
+      margin-left: auto;   /* Center block element */
+      margin-right: auto;  /* Center block element */
+      text-align: left;   /* Reset text-align for content inside card */
+    }
+    .tool-card h2 {
+      margin-top: 0; /* Adjust if h2 is first element */
+      margin-bottom: 0.5rem;
+      color: #FFD700;
+    }
+    .tool-card p {
+      margin-bottom: 1rem;
+    }
+    .tool-button {
+      background: #FFD700;
+      color: #1E1E2F;
+      border: none;
+      padding: 0.75rem 1.25rem;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      display: block; 
+      margin: 1rem auto 0; 
+      width: fit-content; 
+    }
+    .tool-button:hover {
+      background-color: #E6C200;
+    }
+    input[type="text"] {
+      width: calc(100% - 1.5rem); /* Adjust width to account for padding */
+      padding: 0.75rem;
+      margin-bottom: 1rem; /* Added margin for spacing between inputs */
+      margin-top: 0.25rem; /* Added margin for spacing after label */
+      border-radius: 5px;
+      border: 1px solid #3A3D5B;
+      background-color: #1E1E2F;
+      color: #EAEAEA;
+      box-sizing: border-box; 
+    }
+    .result-area {
+      background: #2B2D42;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-top: 1rem;
+      white-space: pre-wrap;
+      text-align: left; 
+      max-height: 300px; /* Limit height and make scrollable if needed */
+      overflow-y: auto;   /* Add scroll for overflow */
+      border: 1px solid #3A3D5B; /* Optional: adds a bit more definition */
+    }
+    #toolModal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.7); /* Slightly darker overlay */
+    }
+    .modal-box {
+      background: #3A3D5B; /* Match tool-card background */
+      margin: 5% auto;
+      padding: 25px; /* Increased padding */
+      border-radius: 10px;
+      max-width: 600px;
+      width: 90%; /* Responsive width */
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      text-align: left; 
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .modal-box label {
+      display: block;
+      margin-top: 0.5rem;
+      margin-bottom: 0.25rem;
+      font-weight: 600; /* Bolder labels */
+    }
+    .modal-box button { 
+        background: #FFD700;
+        color: #1E1E2F;
+        border: none;
+        padding: 0.75rem 1.25rem;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 1rem;
+        margin-right: 0.5rem; 
+    }
+    .modal-box button:hover {
+        background-color: #E6C200;
+    }
+    .modal-close-btn {
+        position:absolute; 
+        top:15px; 
+        right:20px; 
+        color:#EAEAEA; 
+        font-size: 1.8em; 
+        cursor:pointer;
+        line-height: 1;
+    }
+    footer {
+        margin-top: 40px;
+        padding-bottom: 20px; /* Ensure padding at the very bottom */
+    }
+  </style>
+</head>
+<body oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
+    <img src="name.jpg" alt="Siva Prasad Mukherjee" class="profile-image">
+    <h1>Siva's Prompt Genie - For BlogPost</h1>
+
+    <div class="social-buttons-container">
+        <button class="social-btn whatsapp-btn" onclick="openWhatsApp()">Contact For Support on WhatsApp</button>
+        <button class="social-btn facebook-btn" onclick="openFacebookProfile()">Follow Siva on Facebook</button>
+    </div>
+
+  <!-- BlogPost Prompt Generator Tool -->
+  <div id="blogPostPromptToolCard" class="tool-card">
+    <h2>BlogPost Prompt Generator</h2>
+    <p>Generate a detailed, literary-style blog post prompt by providing a feature name, tool name, and target URL.</p>
+    <button class="tool-button" onclick="openBlogPostTool()">Use It Now</button>
+  </div>
+
+  <!-- Modal placeholder -->
+  <div id="toolModal">
+    <div class="modal-box">
+      <span class="modal-close-btn" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle" style="color: #FFD700;"></h2>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    // --- Start of Anti-Dev Tools and Context Menu Disabling ---
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'F12' || 
+          (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J' || event.key === 'C')) ||
+          (event.ctrlKey && event.key === 'u') ||
+          (event.ctrlKey && event.key === 's')) {
+        event.preventDefault();
+      }
+    });
+    // --- End of Anti-Dev Tools ---
+
+    // --- Social Media Link Functions ---
+    function openWhatsApp() {
+      const phoneNumber = "919883787947"; 
+      const message = encodeURIComponent("Hi! I'm using Siva's Prompt Genie and had a question.");
+      const waUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+      window.open(waUrl, '_blank'); // Open in new tab for better UX
+    }
+  
+    function openFacebookProfile() {
+        // Attempt to open in Facebook app, fallback to web
+        const fbWebLink = "https://www.facebook.com/socjhq/";
+        // For mobile, fb://profile/USER_ID is more reliable for profiles if ID is known
+        // fb://facewebmodal/f?href=... is for opening a web URL within the FB app's browser
+        // For a page, fb://page/<page_id> or fb://page?id=<page_id>
+        // Given "socjhq" is likely a username/page name:
+        const fbDeepLink = `fb://facewebmodal/f?href=${fbWebLink}`; 
+        
+        // Try the deep link
+        window.location.href = fbDeepLink;
+
+        // Fallback to web link after a short delay
+        // This timeout is often not reliable as the browser might navigate away before it fires
+        // A more robust solution might involve checking if the app was launched, which is complex.
+        // For simplicity, we'll keep the timeout, but a direct web link might be preferred by some.
+        setTimeout(function() {
+            // Check if still on the same page (simple check, not foolproof)
+            if (window.location.href !== fbDeepLink && window.location.href !== fbWebLink) {
+                 // If navigation to deep link failed or was blocked, it might still be on the original page
+                 // Or, if it succeeded, this might open a new tab which is okay.
+            }
+             // If the app didn't open, or user came back, this ensures they go to the web version.
+             // Consider opening in a new tab for web fallback to not lose the current page.
+             // window.open(fbWebLink, '_blank'); 
+             // For now, matching original behavior:
+             // window.location.href = fbWebLink; 
+        }, 2500); // Increased timeout slightly
+        // Fallback: If deep link fails and user is still on page, try opening web link in new tab after timeout
+        // This is tricky because if the deep link works, we don't want to open another tab.
+        // A common pattern is to just offer the web link directly or have two buttons.
+        // For this implementation, we will keep the original logic pattern.
+        // The user might be navigated away by the fbDeepLink. If not, the fbWebLink will take over.
+    }
+
+    // --- Modal Control Functions ---
+    const modal = document.getElementById('toolModal');
+    const modalTitleElem = document.getElementById('modalTitle');
+    const modalBodyElem = document.getElementById('modalBody');
+
+    function closeModal() {
+      modal.style.display = 'none';
+      modalBodyElem.innerHTML = ''; // Clear previous content
+    }
+
+    // Close modal if user clicks outside of the modal-box
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+
+    // --- BlogPost Prompt Generator Tool ---
+    function openBlogPostTool() {
+      modalTitleElem.textContent = 'BlogPost Prompt Generator';
+      modalBodyElem.innerHTML = `
+        <div>
+          <label for="featureNameInput">Feature Name (Variable 1):</label>
+          <input type="text" id="featureNameInput" placeholder="e.g., AI Content Summarization">
+
+          <label for="toolNameInput">Tool Name (Variable 2):</label>
+          <input type="text" id="toolNameInput" placeholder="e.g., SummaryPro AI">
+
+          <label for="urlInput">URL (Variable 3):</label>
+          <input type="text" id="urlInput" placeholder="e.g., https://example.com/summarypro">
+
+          <button onclick="generateBlogPostPrompt()">Generate Prompt</button>
+        </div>
+        <div id="generatedPromptContainer" class="result-area" style="display:none; margin-top: 1.5rem;"></div>
+        <button id="copyPromptBtn" style="display:none;" onclick="copyGeneratedPrompt()">Copy Prompt</button>
+      `;
+      modal.style.display = 'block';
+    }
+
+    function generateBlogPostPrompt() {
+      const featureName = document.getElementById('featureNameInput').value.trim();
+      const toolName = document.getElementById('toolNameInput').value.trim();
+      const url = document.getElementById('urlInput').value.trim();
+
+      if (!featureName || !toolName || !url) {
+        alert("Please fill in all three fields: Feature Name, Tool Name, and URL.");
+        return;
+      }
+      
+      // Construct the tool name context string. This will be inserted into the prompt.
+      const toolNameContext = `The tool this blog post will subtly promote (without directly naming it in the post itself) is called '${toolName}'.`;
+
+      // The main prompt template. 
+      // Placeholders: {{TOOL_NAME_CONTEXT}}, {{FEATURE_NAME}}, {{URL}}
+      const blogPostPromptTemplate = `{{TOOL_NAME_CONTEXT}}
+
+Now, I want you to write a blog post in the form of a literary Op-Ed article, in a continuous literary flow without any section or paragraph titles or subtitles, in modern and elegant Bengali (India) that is easy to understand — while maintaining both an international literary and marketing standard, as if I’m a close friend and a trusted authority on the topic, speaking directly to the reader in a one-on-one, face-to-face tone. Please break the flow into natural paragraphs with line spacing, and end with a reflective or emotional callout line, designed to encourage comments and shares.
+
+Please read and understand the attached document.
+
+It's my reusable ideal blog post format template. This template is designed for promoting any tool by teaching the importance of a specific feature and how to use it — value-first, non-promotional, reader-focused, and conversion-aware.
+
+Based on this discussions so far, could you please write a blog post with “Understand the Why” and a step by step walkthrough to “Execute the What”, in the format I have given you in the attached document? 
+
+Please strictly adhere to that format template and add the familiarities, experiences, and skills that are needed, how to manage them if the readers are new to it and being a newbie trying to start from scratch. Also Add the follow up questions with their answer.
+
+Title type must be like this: {{FEATURE_NAME}}: Introduction, Importance and how to Use in your online activities.
+
+Please don't use the tool name in it.
+
+Please add what is {{FEATURE_NAME}} in the world of the concerned craft to this blog post, and why the readers must consider to use it in their online activities.
+
+Remember that the main purpose is to send the visitors to {{URL}}, which is the sales page of the tool we are talking about.
+
+You must do this without adding a self-promotional layer — I avoid telling readers to hire me or buy from me. Instead, I keep it neutral, value-driven, and focused on the utility of the service or product type — not my specific offering. This approach strengthens brand trust, authority, and thought leadership, making readers more likely to seek me out organically, on their own terms.
+
+Also, please give me the final word count
+
+Write it in modern, elegant Bengali (India) that is easy to understand, yet maintains an international marketing standard — as if you're a close friend and a trusted authority on the topic, speaking directly to the reader in a one-on-one, face-to-face tone.
+
+Please answer it in this chat, don't use a new pop window for this answer.`;
+
+      // Replace placeholders
+      let finalPrompt = blogPostPromptTemplate.replace('{{TOOL_NAME_CONTEXT}}', toolNameContext);
+      // Use a RegExp with 'g' flag to replace all occurrences of {{FEATURE_NAME}} and {{URL}}
+      finalPrompt = finalPrompt.replace(new RegExp('{{FEATURE_NAME}}', 'g'), featureName);
+      finalPrompt = finalPrompt.replace(new RegExp('{{URL}}', 'g'), url);
+      
+      const container = document.getElementById('generatedPromptContainer');
+      const copyBtn = document.getElementById('copyPromptBtn');
+      
+      container.textContent = finalPrompt;
+      container.style.display = 'block';
+      copyBtn.style.display = 'inline-block'; // Use inline-block to appear next to other elements if needed, or 'block'
+      copyBtn.textContent = 'Copy Prompt'; // Reset button text if previously "Copied!"
+    }
+
+    function copyGeneratedPrompt() {
+      const container = document.getElementById('generatedPromptContainer');
+      const textToCopy = container.textContent;
+      const copyBtn = document.getElementById('copyPromptBtn');
+
+      if (!navigator.clipboard) {
+        // Fallback for older browsers
+        try {
+          const textArea = document.createElement("textarea");
+          textArea.value = textToCopy;
+          textArea.style.position = "fixed"; // Prevent scrolling to bottom
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => {
+            copyBtn.textContent = 'Copy Prompt';
+          }, 2000);
+        } catch (err) {
+          console.error('Fallback copy failed: ', err);
+          alert('Failed to copy text. Please copy manually.');
+        }
+        return;
+      }
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => {
+          copyBtn.textContent = 'Copy Prompt';
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
+        alert('Failed to copy text. Please try again or copy manually.');
+      });
+    }
+  </script>
+    <footer>
+        <p>Copyright © <script>document.write(new Date().getFullYear())</script>.&nbsp;Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
